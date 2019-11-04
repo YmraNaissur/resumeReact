@@ -2,7 +2,12 @@ import React from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = () => {
+const MyPosts = (props) => {
+
+    let postsComponents = props.data.map(p => {
+        return <Post message={p.message} avatar={p.avatar} likeCount={p.likeCount} />
+    });
+
     return (
         <div className={classes.postsBlock}>
             <h3>My posts</h3>
@@ -13,12 +18,7 @@ const MyPosts = () => {
                 <button>Add post</button>
             </div>
             <div className={classes.posts}>
-                <Post message="Hello, how are you?"
-                    avatar="https://avt-9.foto.mail.ru/mail/otmop03b/_avatar180?"
-                    likeCount="20" />
-                <Post message="Hello! It's my first post :)"
-                    avatar="https://ae01.alicdn.com/kf/HTB1e_tdQpXXXXXtXFXXq6xXFXXXN/2x.jpg"
-                    likeCount="15" />
+                { postsComponents }
             </div>
         </div>
     )
