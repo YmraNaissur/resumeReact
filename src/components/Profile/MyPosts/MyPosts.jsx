@@ -12,7 +12,7 @@ const MyPosts = (props) => {
 
     let addPost = () => {
         let text = newPostElement.current.value;
-        alert("text: " + text);
+        props.addPost(text);
         
         // never do this!!!
         // alert(document.getElementById("new-post").value);

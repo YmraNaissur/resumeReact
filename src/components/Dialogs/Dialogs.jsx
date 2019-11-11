@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+import MessageTextArea from './MessageTextArea/MessageTextArea';
 
 const Dialogs = (props) => {
 
@@ -17,6 +18,7 @@ const Dialogs = (props) => {
             </div>
             <div className={classes.messages}>
                 { dialogsMessagesComponents }
+                <MessageTextArea sendMessage={props.sendMessage} />
             </div>
         </div>
     )

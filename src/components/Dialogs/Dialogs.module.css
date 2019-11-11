@@ -22,3 +22,7 @@
 .dialogs .messages .message {
 
 }
+
+.dialogs .messages .textArea {
+    padding-top: 10px;
+}

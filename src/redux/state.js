@@ -45,4 +45,26 @@ let state = {
     }
 }
 
+export let addPost = (postMessage) => {
+    let newPost = {
+        id: 5,
+        message: postMessage,
+        avatar: "http://i.mycdn.me/image?id=870532907451&t=43&plc=WEB&ts=000000000000bd0539&tkn=*IeG5CP4O2LL7csLtxqaj7sEuLEM",
+        likeCount: 0
+    }
+
+    state.profile.profilePosts.push(newPost);
+}
+
+export let sendMessage = (messageText) => {
+    debugger;
+    let newMessage = {
+        id: 5,
+        senderId: 1,
+        text: messageText
+    }
+
+    state.messages.dialogsMessages.push(newMessage);
+}
+
 export default state;
