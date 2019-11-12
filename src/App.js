@@ -16,7 +16,8 @@ const App = (props) => {
             <NavBar state={props.state.sidebar} />
             <div className="app-wrapper-content">
                 <Route path="/profile">
-                    <Profile state={props.state.profile} addPost={props.addPost} />
+                    <Profile profileData={props.state.profile} savePost={props.savePost}
+                        setNewPostText={props.setNewPostText} />
                 </Route>
                 <Route path="/dialogs">
                     <Dialogs state={props.state.messages} sendMessage={props.sendMessage} />

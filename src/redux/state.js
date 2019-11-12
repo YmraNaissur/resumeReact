@@ -21,7 +21,8 @@ let state = {
                 avatar: "https://img.discogs.com/pOI-oRHGTxKPLwIsUBEEirj4r4c=/300x300/filters:strip_icc():format(jpeg):quality(40)/discogs-avatars/U-2604026-1464113040.png.jpg",
                 likeCount: 4
             }
-        ]
+        ],
+        newPostText: "it-kamasutra"
     },
     messages: {
         dialogsUsers: [
@@ -47,15 +48,21 @@ let state = {
     }
 }
 
-export let addPost = (postMessage) => {
+export let savePost = () => {
     let newPost = {
         id: 5,
-        message: postMessage,
+        message: state.profile.newPostText,
         avatar: "http://i.mycdn.me/image?id=870532907451&t=43&plc=WEB&ts=000000000000bd0539&tkn=*IeG5CP4O2LL7csLtxqaj7sEuLEM",
         likeCount: 0
     }
 
     state.profile.profilePosts.push(newPost);
+    state.profile.newPostText = "";
+    rerenderEntireTree(state);
+}
+
+export let setNewPostText = (postMessage) => {
+    state.profile.newPostText = postMessage;
     rerenderEntireTree(state);
 }
 

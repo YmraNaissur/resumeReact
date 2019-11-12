@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
+import { conditionalExpression } from '@babel/types';
 
 const MyPosts = (props) => {
 
@@ -11,19 +12,20 @@ const MyPosts = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
+        props.savePost();
+    }
+
+    let onPostChange = () => {
         let text = newPostElement.current.value;
-        newPostElement.current.value = "";
-        props.addPost(text);
-        
-        // never do this!!!
-        // alert(document.getElementById("new-post").value);
+        props.setNewPostText(text);
     }
 
     return (
         <div className={classes.postsBlock}>
             <h3>My posts</h3>
             <div>
-                <textarea ref={newPostElement}></textarea>
+                <textarea ref={newPostElement}
+                    onChange={onPostChange} value={props.newPostText} />
             </div>
             <div>
                 <button onClick={addPost}>Add post</button>
