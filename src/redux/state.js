@@ -1,3 +1,5 @@
+import { rerenderEntireTree } from "../render";
+
 let state = {
     profile: {
         profilePosts: [
@@ -54,6 +56,7 @@ export let addPost = (postMessage) => {
     }
 
     state.profile.profilePosts.push(newPost);
+    rerenderEntireTree(state);
 }
 
 export let sendMessage = (messageText) => {
@@ -65,6 +68,7 @@ export let sendMessage = (messageText) => {
     }
 
     state.messages.dialogsMessages.push(newMessage);
+    rerenderEntireTree(state);
 }
 
 export default state;

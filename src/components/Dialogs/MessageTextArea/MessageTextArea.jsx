@@ -8,6 +8,7 @@ const MessageTextArea = (props) => {
     let sendMessage = () => {
         debugger;
         let text = messageTextArea.current.value;
+        messageTextArea.current.value = "";
         props.sendMessage(text);
     }
 
