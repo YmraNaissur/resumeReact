@@ -1,4 +1,6 @@
-import { rerenderEntireTree } from "../render";
+let rerenderEntireTree = () => {
+    console.log('State changed');
+}
 
 let state = {
     profile: {
@@ -38,7 +40,8 @@ let state = {
             { id: 2, senderId: 7, text: "Вчера замутил прикольный проект." },
             { id: 3, senderId: 1, text: "Круто. А я не знаю, о чем статью написать." },
             { id: 4, senderId: 7, text: "А, ну ясненько." }
-        ]
+        ],
+        newMessageText: "все молодцом"
     },
     sidebar: {
         friends: [
@@ -48,7 +51,7 @@ let state = {
     }
 }
 
-export let savePost = () => {
+export const savePost = () => {
     let newPost = {
         id: 5,
         message: state.profile.newPostText,
@@ -61,21 +64,30 @@ export let savePost = () => {
     rerenderEntireTree(state);
 }
 
-export let setNewPostText = (postMessage) => {
+export const setNewPostText = (postMessage) => {
     state.profile.newPostText = postMessage;
     rerenderEntireTree(state);
 }
 
-export let sendMessage = (messageText) => {
-    debugger;
+export const saveMessage = () => {
     let newMessage = {
         id: 5,
         senderId: 1,
-        text: messageText
+        text: state.messages.newMessageText
     }
 
     state.messages.dialogsMessages.push(newMessage);
+    state.messages.newMessageText = "";
     rerenderEntireTree(state);
+}
+
+export const setNewMessageText = (messageText) => {
+    state.messages.newMessageText = messageText;
+    rerenderEntireTree(state);
+}
+
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer;  // observer pattern
 }
 
 export default state;
