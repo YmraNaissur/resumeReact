@@ -6,12 +6,12 @@ const MessageTextArea = (props) => {
     let messageTextArea = React.createRef();
 
     let sendMessage = () => {
-        props.store.saveMessage();
+        props.saveMessage();
     }
 
     const onMessageTextChange = () => {
         const text = messageTextArea.current.value;
-        props.store.setNewMessageText(text);
+        props.setNewMessageText(text);
     }
 
     return (

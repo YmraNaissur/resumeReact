@@ -6,15 +6,19 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import store from './redux/store';
 
-let rerenderEntireTree = () => {
+let rerenderEntireTree = (state) => {
     ReactDOM.render (
         <BrowserRouter>
-            <App state={store.getState()} store={store} />
+            <App state={state}
+                saveMessage={store.saveMessage.bind(store)}
+                setNewMessageText={store.setNewMessageText.bind(store)}
+                savePost={store.savePost.bind(store)}
+                setNewPostText={store.setNewPostText.bind(store)} />
         </BrowserRouter>, document.getElementById("root")
     )
 }
 
-rerenderEntireTree(store.state);
+rerenderEntireTree(store.getState());
 
 store.subscribe(rerenderEntireTree);
 

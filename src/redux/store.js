@@ -52,7 +52,7 @@ let store = {
         return this._state;
     },
 
-    _subscriber(observer) {
+    _callSubscriber(observer) {
         console.log("There is no subscriber.")
     },
 
@@ -66,12 +66,12 @@ let store = {
     
         this._state.profile.profilePosts.push(newPost);
         this._state.profile.newPostText = "";
-        this._subscriber(this._state);
+        this._callSubscriber(this._state);
     },
 
     setNewPostText(postMessage) {
         this._state.profile.newPostText = postMessage;
-        this._subscriber(this._state);
+        this._callSubscriber(this._state);
     },
 
     saveMessage() {
@@ -82,18 +82,19 @@ let store = {
         }
         this._state.messages.dialogsMessages.push(newMessage);
         this._state.messages.newMessageText = "";
-        this._subscriber(this._state);
+        this._callSubscriber(this._state);
     },
 
     setNewMessageText(messageText) {
         this._state.messages.newMessageText = messageText;
-        this._subscriber(this._state);
+        this._callSubscriber(this._state);
     },
 
     // observer pattern
     subscribe(observer) {
-        this._subscriber = observer;
+        this._callSubscriber = observer;
     }
 }
 
 export default store;
+window.store = store; 

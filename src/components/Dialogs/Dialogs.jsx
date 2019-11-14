@@ -19,7 +19,8 @@ const Dialogs = (props) => {
             <div className={classes.messages}>
                 { dialogsMessagesComponents }
                 <MessageTextArea messageText={props.messagesData.newMessageText}
-                    store={props.store} />
+                    saveMessage={props.saveMessage}
+                    setNewMessageText={props.setNewMessageText} />
             </div>
         </div>
     )
