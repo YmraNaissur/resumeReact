@@ -52,16 +52,7 @@ let store = {
         console.log("There is no subscriber.")
     },
 
-    getState() {
-        return this._state;
-    },
-
-    // observer pattern
-    subscribe(observer) {
-        this._callSubscriber = observer;
-    },
-
-    savePost() {
+    _savePost() {
         let newPost = {
             id: 5,
             message: this._state.profile.newPostText,
@@ -74,12 +65,12 @@ let store = {
         this._callSubscriber(this._state);
     },
 
-    setNewPostText(newText) {
+    _setNewPostText(newText) {
         this._state.profile.newPostText = newText;
         this._callSubscriber(this._state);
     },
 
-    saveMessage() {
+    _saveMessage() {
         let newMessage = {
             id: 5,
             senderId: 1,
@@ -90,18 +81,31 @@ let store = {
         this._callSubscriber(this._state);
     },
 
-    setNewMessageText(messageText) {
+    _setNewMessageText(messageText) {
         this._state.messages.newMessageText = messageText;
         this._callSubscriber(this._state);
     },
 
     dispatch(action) { // {type: 'SAVE_POST'}
-        if (action.type === 'SAVE_POST') {
-            this.savePost();
-        } else if (action.type === 'SET_NEW_POST_TEXT') {
-            this.setNewPostText(action.newText);
+        if (action.type === "SAVE_POST") {
+            this._savePost();
+        } else if (action.type === "SET_NEW_POST_TEXT") {
+            this._setNewPostText(action.newText);
+        } else if (action.type === "SAVE_MESSAGE") {
+            this._saveMessage();
+        } else if (action.type === "SET_NEW_MESSAGE_TEXT") {
+            this._setNewMessageText(action.newText);
         }
-    }
+    },
+
+    getState() {
+        return this._state;
+    },
+
+    // observer pattern
+    subscribe(observer) {
+        this._callSubscriber = observer;
+    },
 }
 
 export default store;

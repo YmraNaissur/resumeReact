@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
-import { conditionalExpression } from '@babel/types';
 
 const MyPosts = (props) => {
 
@@ -12,12 +11,12 @@ const MyPosts = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        props.dispatch({type: 'SAVE_POST'});
+        props.dispatch({type: "SAVE_POST"});
     }
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.dispatch({type: 'SET_NEW_POST_TEXT', newText: text});
+        props.dispatch({type: "SET_NEW_POST_TEXT", newText: text});
     }
 
     return (
