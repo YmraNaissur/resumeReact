@@ -48,12 +48,17 @@ let store = {
         }
     },
 
+    _callSubscriber(observer) {
+        console.log("There is no subscriber.")
+    },
+
     getState() {
         return this._state;
     },
 
-    _callSubscriber(observer) {
-        console.log("There is no subscriber.")
+    // observer pattern
+    subscribe(observer) {
+        this._callSubscriber = observer;
     },
 
     savePost() {
@@ -69,8 +74,8 @@ let store = {
         this._callSubscriber(this._state);
     },
 
-    setNewPostText(postMessage) {
-        this._state.profile.newPostText = postMessage;
+    setNewPostText(newText) {
+        this._state.profile.newPostText = newText;
         this._callSubscriber(this._state);
     },
 
@@ -90,9 +95,12 @@ let store = {
         this._callSubscriber(this._state);
     },
 
-    // observer pattern
-    subscribe(observer) {
-        this._callSubscriber = observer;
+    dispatch(action) { // {type: 'SAVE_POST'}
+        if (action.type === 'SAVE_POST') {
+            this.savePost();
+        } else if (action.type === 'SET_NEW_POST_TEXT') {
+            this.setNewPostText(action.newText);
+        }
     }
 }
 
