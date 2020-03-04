@@ -1,17 +1,17 @@
 import React from 'react';
 import classes from '../Dialogs.module.css';
+import { sendMessageActionCreator, setNewMessageTextActionCreator } from '../../../redux/store';
 
 const MessageTextArea = (props) => {
 
     let messageTextArea = React.createRef();
 
-    let sendMessage = () => {
-        props.dispatch({ type: "SAVE_MESSAGE" });
+    const sendMessage = () => {
+        props.dispatch(sendMessageActionCreator());
     }
 
     const onMessageTextChange = () => {
-        const text = messageTextArea.current.value;
-        props.dispatch({ type: "SET_NEW_MESSAGE_TEXT", newText: text });
+        props.dispatch(setNewMessageTextActionCreator(messageTextArea.current.value));
     }
 
     return (

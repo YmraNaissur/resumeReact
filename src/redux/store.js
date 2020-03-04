@@ -1,3 +1,8 @@
+const ADD_POST = "ADD_POST";
+const SET_NEW_POST_TEXT = "SET_NEW_POST_TEXT";
+const SAVE_MESSAGE = "SAVE_MESSAGE";
+const SET_NEW_MESSAGE_TEXT = "SET_NEW_MESSAGE_TEXT";
+
 let store = {
     _state: {
         profile: {
@@ -87,16 +92,18 @@ let store = {
     },
 
     dispatch(action) { // {type: 'SAVE_POST'}
-        if (action.type === "SAVE_POST") {
+        if (action.type === ADD_POST) {
             this._savePost();
-        } else if (action.type === "SET_NEW_POST_TEXT") {
+        } else if (action.type === SET_NEW_POST_TEXT) {
             this._setNewPostText(action.newText);
-        } else if (action.type === "SAVE_MESSAGE") {
+        } else if (action.type === SAVE_MESSAGE) {
             this._saveMessage();
-        } else if (action.type === "SET_NEW_MESSAGE_TEXT") {
+        } else if (action.type === SET_NEW_MESSAGE_TEXT) {
             this._setNewMessageText(action.newText);
         }
     },
+
+
 
     getState() {
         return this._state;
@@ -107,6 +114,20 @@ let store = {
         this._callSubscriber = observer;
     },
 }
+
+export const addPostActionCreator = () => ({type: ADD_POST });
+
+export const updatePostTextActionCreator = (text) => ({
+    type: SET_NEW_POST_TEXT,
+    newText: text
+});
+
+export const sendMessageActionCreator = () => ({type: SAVE_MESSAGE});
+
+export const setNewMessageTextActionCreator = (text) => ({
+    type: SET_NEW_MESSAGE_TEXT,
+    newText: text
+});
 
 export default store;
 window.store = store; 
