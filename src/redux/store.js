@@ -1,7 +1,7 @@
-const ADD_POST = "ADD_POST";
-const SET_NEW_POST_TEXT = "SET_NEW_POST_TEXT";
-const SAVE_MESSAGE = "SAVE_MESSAGE";
-const SET_NEW_MESSAGE_TEXT = "SET_NEW_MESSAGE_TEXT";
+import profilePostsReducer from './profilePostsReducer';
+import messagesReducer from './messagesReducer';
+import sidebarReducer from './sidebarReducer';
+import profilePostReducer from './profilePostsReducer';
 
 let store = {
     _state: {
@@ -57,53 +57,12 @@ let store = {
         console.log("There is no subscriber.")
     },
 
-    _savePost() {
-        let newPost = {
-            id: 5,
-            message: this._state.profile.newPostText,
-            avatar: "http://i.mycdn.me/image?id=870532907451&t=43&plc=WEB&ts=000000000000bd0539&tkn=*IeG5CP4O2LL7csLtxqaj7sEuLEM",
-            likeCount: 0
-        }
-    
-        this._state.profile.profilePosts.push(newPost);
-        this._state.profile.newPostText = "";
-        this._callSubscriber(this._state);
-    },
-
-    _setNewPostText(newText) {
-        this._state.profile.newPostText = newText;
-        this._callSubscriber(this._state);
-    },
-
-    _saveMessage() {
-        let newMessage = {
-            id: 5,
-            senderId: 1,
-            text: this._state.messages.newMessageText
-        }
-        this._state.messages.dialogsMessages.push(newMessage);
-        this._state.messages.newMessageText = "";
-        this._callSubscriber(this._state);
-    },
-
-    _setNewMessageText(messageText) {
-        this._state.messages.newMessageText = messageText;
-        this._callSubscriber(this._state);
-    },
-
     dispatch(action) { // {type: 'SAVE_POST'}
-        if (action.type === ADD_POST) {
-            this._savePost();
-        } else if (action.type === SET_NEW_POST_TEXT) {
-            this._setNewPostText(action.newText);
-        } else if (action.type === SAVE_MESSAGE) {
-            this._saveMessage();
-        } else if (action.type === SET_NEW_MESSAGE_TEXT) {
-            this._setNewMessageText(action.newText);
-        }
+        this._state.profile = profilePostReducer(this._state.profile, action);
+        this._state.messages = messagesReducer(this._state.messages, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+        this._callSubscriber(this._state);
     },
-
-
 
     getState() {
         return this._state;
@@ -114,20 +73,6 @@ let store = {
         this._callSubscriber = observer;
     },
 }
-
-export const addPostActionCreator = () => ({type: ADD_POST });
-
-export const updatePostTextActionCreator = (text) => ({
-    type: SET_NEW_POST_TEXT,
-    newText: text
-});
-
-export const sendMessageActionCreator = () => ({type: SAVE_MESSAGE});
-
-export const setNewMessageTextActionCreator = (text) => ({
-    type: SET_NEW_MESSAGE_TEXT,
-    newText: text
-});
 
 export default store;
 window.store = store; 
