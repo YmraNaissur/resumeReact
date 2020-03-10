@@ -7,9 +7,9 @@ import MessageTextArea from './MessageTextArea/MessageTextArea';
 const Dialogs = (props) => {
 
     let dialogsUsersComponents =
-        props.messagesData.dialogsUsers.map(u => <DialogItem id={u.id} name={u.name} />);
+        props.dialogsUsers.map(u => <DialogItem id={u.id} name={u.name} />);
     let dialogsMessagesComponents =
-        props.messagesData.dialogsMessages.map(m => <Message text={m.text} />);
+        props.dialogsMessages.map(m => <Message text={m.text} />);
 
     return (
         <div className={classes.dialogs}>
@@ -18,8 +18,9 @@ const Dialogs = (props) => {
             </div>
             <div className={classes.messages}>
                 { dialogsMessagesComponents }
-                <MessageTextArea messageText={props.messagesData.newMessageText}
-                    dispatch={props.dispatch} />
+                <MessageTextArea newMessageText={props.newMessageText}
+                                    updateMessageText={props.updateMessageText}
+                                    sendMessage={props.sendMessage} />
             </div>
         </div>
     )

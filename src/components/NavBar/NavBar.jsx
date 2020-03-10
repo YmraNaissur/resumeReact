@@ -22,7 +22,7 @@ const NavBar = (props) => {
         <NavLink to="/settings" activeClassName={classes.active}>Settings</NavLink>
       </div>
     
-      <Friends state={props.navBarData.friends} />
+      <Friends store={props.store} />
     </nav>
   )
 }

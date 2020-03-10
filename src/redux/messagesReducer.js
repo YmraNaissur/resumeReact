@@ -33,6 +33,7 @@ const messagesReducer = (state = initialState, action) => {
 }
 
 const _saveMessage = (state) => {
+    debugger;
     let newMessage = {
         id: 5,
         senderId: 1,
