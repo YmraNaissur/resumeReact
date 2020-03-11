@@ -9,17 +9,17 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 
-const App = (props) => {
+const App = () => {
     return (
         <div className="app-wrapper">
             <Header />
-            <NavBar store={props.store} />
+            <NavBar />
             <div className="app-wrapper-content">
                 <Route path="/profile">
-                    <Profile store={props.store} />
+                    <Profile />
                 </Route>
                 <Route path="/dialogs">
-                    <DialogsContainer store={props.store} />
+                    <DialogsContainer />
                 </Route>
                 <Route path="/news" component={News} />
                 <Route path="/music" component={Music} />

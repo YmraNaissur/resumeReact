@@ -3,7 +3,7 @@ import classes from './Friends.module.css';
 import FriendItem from './FriendItem/FriendItem';
 
 const Friends = (props) => {
-    let friends = props.store.getState().sidebar.friends.map(f => <FriendItem state={f} />);
+    let friends = props.state.sidebar.friends.map(f => <FriendItem state={f} />);
     return (
         <div className={classes.friends}>
             <div className={classes.friendsLabel}>
